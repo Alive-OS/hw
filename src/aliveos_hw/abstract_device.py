@@ -90,7 +90,7 @@ class AbstractDevice():
 
     def subscriber_to_cmd_callback(self, data: msg.DeviceCmd):
         if ((data.device == self.name) or (data.device == 'all')):
-            logwarn(f"Got cmd: {data.cmd}({data.arg})")
+            logdebug(f"cmd -> dev: {data.cmd}({data.arg})")
             cmd_method = getattr(self, f"command_{data.cmd}", None)
             args = string_to_obj(data.arg)
             if cmd_method:
